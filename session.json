@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "tipo": "campionato_inizializzato",
+    "timestamp": "2026-03-12T03:04:01.272845",
+    "squadre": 20,
+    "giornate": 38
+  }
+]

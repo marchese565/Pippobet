@@ -3,7 +3,7 @@ BetOdds Simulator - Entry point principale del progetto.
 
 Avvia l'applicazione completa. Esecuzione:
 python py
-4
+
 Moduli del progetto:
   - client.py      : menu principale (calcolo quote, scommesse, cronologia)
   - simulator.py   : simulatore scommesse casuali con andamento bankroll
