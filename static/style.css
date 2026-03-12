@@ -1276,6 +1276,10 @@ button:hover, .btn:hover {
 .countdown-bar.countdown-expired { opacity: 0.7; }
 
 /* Virtuali con schedina laterale */
+.virtuali-menu-mobile {
+  display: none;
+}
+
 .virtuali-with-schedina {
   display: flex;
   gap: 2rem;
@@ -1866,9 +1870,50 @@ button:hover, .btn:hover {
   .admin-stats { flex-direction: column; }
   .admin-stat { width: 100%; }
 
-  /* Virtuali mobile: compatto, meno longilineo */
-  .virtuali-with-schedina { gap: 1rem; }
-  .virtuali-centro { grid-template-columns: 1fr; gap: 0.75rem; }
+  /* Virtuali mobile: menu a tab, una sezione alla volta */
+  .virtuali-menu-mobile {
+    display: flex;
+    order: 0;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .vmenu-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .vmenu-btn:hover { border-color: var(--green); color: var(--text); }
+  .vmenu-btn.active {
+    background: var(--green);
+    color: var(--bg-dark);
+    border-color: var(--green);
+  }
+
+  .vmobile-section {
+    display: none !important;
+  }
+  .vmobile-section.vmobile-active {
+    display: block !important;
+  }
+
+  .virtuali-with-schedina { gap: 0.75rem; flex-direction: column; }
+  .virtuali-centro {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    order: 1;
+  }
+  .virtuali-destra {
+    order: 2;
+    width: 100%;
+  }
   .classifica-panel {
     position: static;
     padding: 0.75rem 1rem;
