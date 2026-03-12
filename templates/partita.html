@@ -16,91 +16,92 @@
 <form method="post" action="{{ url_for('scommetti', partita_id=partita.id) }}" class="form-scommessa-partita" id="form-bet">
 {% endif %}
 
-<div class="partita-griglia">
-  <div class="partita-categoria">
-    <h3>1 · X · 2</h3>
-    <table class="tab-categoria">
-      <tr><th>1</th><td>{{ "%.2f"|format(quote['1']) if quote['1'] else "–" }}</td></tr>
-      <tr><th>X</th><td>{{ "%.2f"|format(quote['X']) if quote['X'] else "–" }}</td></tr>
-      <tr><th>2</th><td>{{ "%.2f"|format(quote['2']) if quote['2'] else "–" }}</td></tr>
-    </table>
-    {% if not esito_label %}
-    <div class="cat-bet">
-      <label class="bet-riga"><input type="radio" name="tipo" value="1" required data-quota="{{ quote['1'] or 0 }}"> 1</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="X" data-quota="{{ quote['X'] or 0 }}"> X</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="2" data-quota="{{ quote['2'] or 0 }}"> 2</label>
+<div class="quote-per-categoria">
+  <div class="quote-cat">
+    <span class="quote-cat-titolo">1 · X · 2</span>
+    <div class="odds-btns">
+      {% if not esito_label %}
+      <label class="odds-btn"><input type="radio" name="tipo" value="1" required data-quota="{{ quote['1'] or 0 }}"><span class="odds-lab">1</span><span class="odds-val">{{ "%.2f"|format(quote['1']) if quote['1'] else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="X" data-quota="{{ quote['X'] or 0 }}"><span class="odds-lab">X</span><span class="odds-val">{{ "%.2f"|format(quote['X']) if quote['X'] else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="2" data-quota="{{ quote['2'] or 0 }}"><span class="odds-lab">2</span><span class="odds-val">{{ "%.2f"|format(quote['2']) if quote['2'] else "–" }}</span></label>
+      {% else %}
+      <span class="odds-btn odds-static"><span class="odds-lab">1</span><span class="odds-val">{{ "%.2f"|format(quote['1']) if quote['1'] else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">X</span><span class="odds-val">{{ "%.2f"|format(quote['X']) if quote['X'] else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">2</span><span class="odds-val">{{ "%.2f"|format(quote['2']) if quote['2'] else "–" }}</span></span>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 
-  <div class="partita-categoria">
-    <h3>Doppie</h3>
-    <table class="tab-categoria">
-      <tr><th>1X</th><td>{{ "%.2f"|format(quote['1X']) if quote['1X'] else "–" }}</td></tr>
-      <tr><th>X2</th><td>{{ "%.2f"|format(quote['X2']) if quote['X2'] else "–" }}</td></tr>
-      <tr><th>12</th><td>{{ "%.2f"|format(quote['12']) if quote['12'] else "–" }}</td></tr>
-    </table>
-    {% if not esito_label %}
-    <div class="cat-bet">
-      <label class="bet-riga"><input type="radio" name="tipo" value="1X" data-quota="{{ quote['1X'] or 0 }}"> 1X</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="X2" data-quota="{{ quote['X2'] or 0 }}"> X2</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="12" data-quota="{{ quote['12'] or 0 }}"> 12</label>
+  <div class="quote-cat">
+    <span class="quote-cat-titolo">1X · 12 · X2</span>
+    <div class="odds-btns">
+      {% if not esito_label %}
+      <label class="odds-btn"><input type="radio" name="tipo" value="1X" data-quota="{{ quote['1X'] or 0 }}"><span class="odds-lab">1X</span><span class="odds-val">{{ "%.2f"|format(quote['1X']) if quote['1X'] else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="12" data-quota="{{ quote['12'] or 0 }}"><span class="odds-lab">12</span><span class="odds-val">{{ "%.2f"|format(quote['12']) if quote['12'] else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="X2" data-quota="{{ quote['X2'] or 0 }}"><span class="odds-lab">X2</span><span class="odds-val">{{ "%.2f"|format(quote['X2']) if quote['X2'] else "–" }}</span></label>
+      {% else %}
+      <span class="odds-btn odds-static"><span class="odds-lab">1X</span><span class="odds-val">{{ "%.2f"|format(quote['1X']) if quote['1X'] else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">12</span><span class="odds-val">{{ "%.2f"|format(quote['12']) if quote['12'] else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">X2</span><span class="odds-val">{{ "%.2f"|format(quote['X2']) if quote['X2'] else "–" }}</span></span>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 
-  <div class="partita-categoria">
-    <h3>Over</h3>
-    <table class="tab-categoria">
-      <tr><th>1.5</th><td>{{ "%.2f"|format(quote['Over1.5']) if quote.get('Over1.5') else "–" }}</td></tr>
-      <tr><th>2.5</th><td>{{ "%.2f"|format(quote['Over2.5']) if quote.get('Over2.5') else "–" }}</td></tr>
-      <tr><th>3.5</th><td>{{ "%.2f"|format(quote['Over3.5']) if quote.get('Over3.5') else "–" }}</td></tr>
-    </table>
-    {% if not esito_label %}
-    <div class="cat-bet">
-      <label class="bet-riga"><input type="radio" name="tipo" value="Over1.5" data-quota="{{ quote.get('Over1.5') or 0 }}"> 1.5</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="Over2.5" data-quota="{{ quote.get('Over2.5') or 0 }}"> 2.5</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="Over3.5" data-quota="{{ quote.get('Over3.5') or 0 }}"> 3.5</label>
+  <div class="quote-cat">
+    <span class="quote-cat-titolo">Ov 1.5</span>
+    <div class="odds-btns">
+      {% if not esito_label %}
+      <label class="odds-btn"><input type="radio" name="tipo" value="Under1.5" data-quota="{{ quote.get('Under1.5') or 0 }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under1.5')) if quote.get('Under1.5') else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="Over1.5" data-quota="{{ quote.get('Over1.5') or 0 }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over1.5')) if quote.get('Over1.5') else "–" }}</span></label>
+      {% else %}
+      <span class="odds-btn odds-static"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under1.5')) if quote.get('Under1.5') else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over1.5')) if quote.get('Over1.5') else "–" }}</span></span>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 
-  <div class="partita-categoria">
-    <h3>Under</h3>
-    <table class="tab-categoria">
-      <tr><th>1.5</th><td>{{ "%.2f"|format(quote['Under1.5']) if quote.get('Under1.5') else "–" }}</td></tr>
-      <tr><th>2.5</th><td>{{ "%.2f"|format(quote['Under2.5']) if quote.get('Under2.5') else "–" }}</td></tr>
-      <tr><th>3.5</th><td>{{ "%.2f"|format(quote['Under3.5']) if quote.get('Under3.5') else "–" }}</td></tr>
-    </table>
-    {% if not esito_label %}
-    <div class="cat-bet">
-      <label class="bet-riga"><input type="radio" name="tipo" value="Under1.5" data-quota="{{ quote.get('Under1.5') or 0 }}"> 1.5</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="Under2.5" data-quota="{{ quote.get('Under2.5') or 0 }}"> 2.5</label>
-      <label class="bet-riga"><input type="radio" name="tipo" value="Under3.5" data-quota="{{ quote.get('Under3.5') or 0 }}"> 3.5</label>
+  <div class="quote-cat">
+    <span class="quote-cat-titolo">Ov 2.5</span>
+    <div class="odds-btns">
+      {% if not esito_label %}
+      <label class="odds-btn"><input type="radio" name="tipo" value="Under2.5" data-quota="{{ quote.get('Under2.5') or 0 }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under2.5')) if quote.get('Under2.5') else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="Over2.5" data-quota="{{ quote.get('Over2.5') or 0 }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over2.5')) if quote.get('Over2.5') else "–" }}</span></label>
+      {% else %}
+      <span class="odds-btn odds-static"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under2.5')) if quote.get('Under2.5') else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over2.5')) if quote.get('Over2.5') else "–" }}</span></span>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
 
-  <div class="partita-categoria partita-scommesse">
-    <h3>Le tue scommesse</h3>
-    {% if scommesse %}
-    <table class="tab-categoria tab-scommesse">
-      {% for s in scommesse %}
-      <tr class="{% if s.vinto is none %}in-attesa{% elif s.vinto %}vinta{% else %}persa{% endif %}">
-        <td>{{ s.tipo }} @ {{ "%.2f"|format(s.quota) }} — €{{ "%.2f"|format(s.puntata) }}</td>
-        <td class="sc-esito">
-          {% if s.vinto is not none %}
-            {% if s.vinto %}<span class="vinto">+€{{ "%.2f"|format(s.vincita) }}</span>{% else %}<span class="perso">✗</span>{% endif %}
-          {% else %}<span class="in-attesa">…</span>{% endif %}
-        </td>
-        <td class="sc-del"><form method="post" action="{{ url_for('scommessa_elimina', scommessa_id=s.id) }}"><button type="submit">×</button></form></td>
-      </tr>
-      {% endfor %}
-    </table>
-    {% else %}
-    <p class="tab-vuota">Nessuna scommessa</p>
-    {% endif %}
+  <div class="quote-cat">
+    <span class="quote-cat-titolo">Ov 3.5</span>
+    <div class="odds-btns">
+      {% if not esito_label %}
+      <label class="odds-btn"><input type="radio" name="tipo" value="Under3.5" data-quota="{{ quote.get('Under3.5') or 0 }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under3.5')) if quote.get('Under3.5') else "–" }}</span></label>
+      <label class="odds-btn"><input type="radio" name="tipo" value="Over3.5" data-quota="{{ quote.get('Over3.5') or 0 }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over3.5')) if quote.get('Over3.5') else "–" }}</span></label>
+      {% else %}
+      <span class="odds-btn odds-static"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(quote.get('Under3.5')) if quote.get('Under3.5') else "–" }}</span></span>
+      <span class="odds-btn odds-static"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(quote.get('Over3.5')) if quote.get('Over3.5') else "–" }}</span></span>
+      {% endif %}
+    </div>
   </div>
+</div>
+
+<div class="scommesse-compact">
+  <h3 class="scommesse-titolo">Le tue scommesse</h3>
+  {% if scommesse %}
+  <ul class="scommesse-lista-compact">
+    {% for s in scommesse %}
+    <li class="sc-item {% if s.vinto is none %}in-attesa{% elif s.vinto %}vinta{% else %}persa{% endif %}">
+      <span class="sc-testo">{{ s.tipo }} @ {{ "%.2f"|format(s.quota) }} — €{{ "%.2f"|format(s.puntata) }}</span>
+      <span class="sc-esito">{% if s.vinto is not none %}{% if s.vinto %}+€{{ "%.2f"|format(s.vincita) }}{% else %}✗{% endif %}{% else %}…{% endif %}</span>
+      <form method="post" action="{{ url_for('scommessa_elimina', scommessa_id=s.id) }}" class="sc-del-form"><button type="submit" class="sc-del-btn">×</button></form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="tab-vuota">Nessuna scommessa</p>
+  {% endif %}
 </div>
 
 {% if not esito_label %}

@@ -62,34 +62,47 @@
           </form>
 
           <form method="post" action="{{ url_for('virtuali_schedina') }}" class="form-schedina" id="form-schedina">
-            <ul class="partite-list partite-list-sm">
+            <ul class="partite-list partite-list-odds">
               {% for p in partite_giornata %}
-              <li class="partita-virtuale partita-sm">
+              <li class="partita-virtuale partita-odds-row">
                 <span class="partita-match">{{ p.casa }} – {{ p.trasferta }}</span>
-                <div class="quote-grid">
-                  <div class="quote-group">
-                    <span class="group-label">Esito</span>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1" data-quota="{{ "%.2f"|format(p.quote['1']) }}"><span><span class="quote-opzione">1</span><span class="quote-valore">{{ "%.2f"|format(p.quote['1']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X" data-quota="{{ "%.2f"|format(p.quote['X']) }}"><span><span class="quote-opzione">X</span><span class="quote-valore">{{ "%.2f"|format(p.quote['X']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="2" data-quota="{{ "%.2f"|format(p.quote['2']) }}"><span><span class="quote-opzione">2</span><span class="quote-valore">{{ "%.2f"|format(p.quote['2']) }}</span></span></label>
+                <div class="quote-per-categoria">
+                  <div class="quote-cat">
+                    <span class="quote-cat-titolo">1 · X · 2</span>
+                    <div class="odds-btns">
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1" data-quota="{{ "%.2f"|format(p.quote['1']) }}"><span class="odds-lab">1</span><span class="odds-val">{{ "%.2f"|format(p.quote['1']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X" data-quota="{{ "%.2f"|format(p.quote['X']) }}"><span class="odds-lab">X</span><span class="odds-val">{{ "%.2f"|format(p.quote['X']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="2" data-quota="{{ "%.2f"|format(p.quote['2']) }}"><span class="odds-lab">2</span><span class="odds-val">{{ "%.2f"|format(p.quote['2']) }}</span></label>
+                    </div>
                   </div>
-                  <div class="quote-group">
-                    <span class="group-label">Doppie</span>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1X" data-quota="{{ "%.2f"|format(p.quote['1X']) }}"><span><span class="quote-opzione">1X</span><span class="quote-valore">{{ "%.2f"|format(p.quote['1X']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X2" data-quota="{{ "%.2f"|format(p.quote['X2']) }}"><span><span class="quote-opzione">X2</span><span class="quote-valore">{{ "%.2f"|format(p.quote['X2']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="12" data-quota="{{ "%.2f"|format(p.quote['12']) }}"><span><span class="quote-opzione">12</span><span class="quote-valore">{{ "%.2f"|format(p.quote['12']) }}</span></span></label>
+                  <div class="quote-cat">
+                    <span class="quote-cat-titolo">1X · 12 · X2</span>
+                    <div class="odds-btns">
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1X" data-quota="{{ "%.2f"|format(p.quote['1X']) }}"><span class="odds-lab">1X</span><span class="odds-val">{{ "%.2f"|format(p.quote['1X']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="12" data-quota="{{ "%.2f"|format(p.quote['12']) }}"><span class="odds-lab">12</span><span class="odds-val">{{ "%.2f"|format(p.quote['12']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X2" data-quota="{{ "%.2f"|format(p.quote['X2']) }}"><span class="odds-lab">X2</span><span class="odds-val">{{ "%.2f"|format(p.quote['X2']) }}</span></label>
+                    </div>
                   </div>
-                  <div class="quote-group">
-                    <span class="group-label">Over</span>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over1.5" data-quota="{{ "%.2f"|format(p.quote['Over1.5']) }}"><span><span class="quote-opzione">O1.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over1.5']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over2.5" data-quota="{{ "%.2f"|format(p.quote['Over2.5']) }}"><span><span class="quote-opzione">O2.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over2.5']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over3.5" data-quota="{{ "%.2f"|format(p.quote['Over3.5']) }}"><span><span class="quote-opzione">O3.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over3.5']) }}</span></span></label>
+                  <div class="quote-cat">
+                    <span class="quote-cat-titolo">Ov 1.5</span>
+                    <div class="odds-btns">
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under1.5" data-quota="{{ "%.2f"|format(p.quote['Under1.5']) }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(p.quote['Under1.5']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over1.5" data-quota="{{ "%.2f"|format(p.quote['Over1.5']) }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(p.quote['Over1.5']) }}</span></label>
+                    </div>
                   </div>
-                  <div class="quote-group">
-                    <span class="group-label">Under</span>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under1.5" data-quota="{{ "%.2f"|format(p.quote['Under1.5']) }}"><span><span class="quote-opzione">U1.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under1.5']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under2.5" data-quota="{{ "%.2f"|format(p.quote['Under2.5']) }}"><span><span class="quote-opzione">U2.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under2.5']) }}</span></span></label>
-                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under3.5" data-quota="{{ "%.2f"|format(p.quote['Under3.5']) }}"><span><span class="quote-opzione">U3.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under3.5']) }}</span></span></label>
+                  <div class="quote-cat">
+                    <span class="quote-cat-titolo">Ov 2.5</span>
+                    <div class="odds-btns">
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under2.5" data-quota="{{ "%.2f"|format(p.quote['Under2.5']) }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(p.quote['Under2.5']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over2.5" data-quota="{{ "%.2f"|format(p.quote['Over2.5']) }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(p.quote['Over2.5']) }}</span></label>
+                    </div>
+                  </div>
+                  <div class="quote-cat">
+                    <span class="quote-cat-titolo">Ov 3.5</span>
+                    <div class="odds-btns">
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under3.5" data-quota="{{ "%.2f"|format(p.quote['Under3.5']) }}"><span class="odds-lab">U</span><span class="odds-val">{{ "%.2f"|format(p.quote['Under3.5']) }}</span></label>
+                      <label class="odds-btn"><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over3.5" data-quota="{{ "%.2f"|format(p.quote['Over3.5']) }}"><span class="odds-lab">O</span><span class="odds-val">{{ "%.2f"|format(p.quote['Over3.5']) }}</span></label>
+                    </div>
                   </div>
                 </div>
               </li>

@@ -313,6 +313,25 @@ body {
   color: var(--text-muted);
 }
 
+.partita-link-odds .partita-quote-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.partita-1x2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 0.6rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  min-width: 44px;
+}
+
+.partita-1x2 .q-lab { font-size: 0.75rem; color: var(--text-muted); }
+.partita-1x2 .q-val { font-weight: 600; color: var(--green); font-variant-numeric: tabular-nums; }
+
 .esito-badge {
   padding: 0.35rem 0.75rem;
   border-radius: 20px;
@@ -615,7 +634,155 @@ button:hover, .btn:hover {
   color: var(--text-muted);
 }
 
-/* Partita: tabelle 500x300 separate per categoria */
+/* Partita: quote organizzate per categoria */
+.quote-per-categoria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quote-cat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quote-cat-titolo {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Le tue scommesse: compatta */
+.scommesse-compact {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  max-width: 400px;
+}
+
+.scommesse-titolo {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.scommesse-lista-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+.sc-item:last-child { border-bottom: none; }
+.sc-item .sc-testo { flex: 1; min-width: 0; }
+.sc-item .sc-esito { font-weight: 600; }
+.sc-item.vinta .sc-esito { color: var(--green); }
+.sc-item.persa .sc-esito { color: var(--red); }
+.sc-item.in-attesa .sc-esito { color: var(--text-muted); }
+.sc-del-form { flex-shrink: 0; margin: 0; }
+.sc-del-btn {
+  width: 22px; height: 22px;
+  padding: 0; font-size: 1rem; line-height: 1;
+  background: transparent; border: none; color: var(--text-muted);
+  cursor: pointer;
+}
+.sc-del-btn:hover { color: var(--red); }
+.tab-vuota { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Legacy odds-block (usato in virtuali) */
+.quote-row-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.odds-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.odds-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.odds-btns {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.odds-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 0.5rem 0.6rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.odds-btn:hover { border-color: var(--green); }
+.odds-btn input { display: none; }
+.odds-btn:has(input:checked) {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-dark);
+}
+.odds-btn:has(input:checked) .odds-val { color: var(--bg-dark); }
+.odds-btn .odds-lab { font-size: 0.75rem; color: var(--text-dim); }
+.odds-btn .odds-val { font-weight: 600; color: var(--green); font-variant-numeric: tabular-nums; }
+.odds-btn:has(input:checked) .odds-lab { color: rgba(0,0,0,0.7); }
+
+.odds-btn.odds-static { cursor: default; }
+.odds-btn.odds-static .odds-val { color: var(--green); }
+
+/* Virtuali: stessa struttura quote per riga */
+.partite-list-odds { list-style: none; padding: 0; margin: 0; }
+.partita-odds-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.partita-odds-row .partita-match {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.quote-row-compact {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+}
+
+/* Partita: Le tue scommesse */
 .partita-griglia {
   display: flex;
   flex-wrap: wrap;
@@ -1772,6 +1939,39 @@ button:hover, .btn:hover {
   .partita-quote span { margin: 0 0.35rem; }
 
   /* Partita singola: griglia una colonna, full width */
+  /* Partita: quote per categoria mobile */
+  .quote-per-categoria {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .quote-cat { padding: 0.6rem 0.75rem; }
+  .scommesse-compact { max-width: 100%; }
+
+  /* Legacy quote-row-layout mobile */
+  .quote-row-layout {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.75rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .odds-block { flex-shrink: 0; }
+  .odds-btn {
+    min-width: 48px;
+    min-height: 44px;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  /* Index: 1X2 box mobile */
+  .partita-link-odds .partita-quote-row { flex-wrap: wrap; gap: 0.4rem; }
+  .partita-1x2 {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.4rem 0.5rem;
+  }
+
   .partita-header {
     flex-wrap: wrap;
     gap: 0.75rem;
@@ -1782,16 +1982,6 @@ button:hover, .btn:hover {
     flex-shrink: 0;
   }
   .partita-titolo h1 { font-size: 1.25rem; }
-  .partita-griglia {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .partita-categoria,
-  .partita-categoria.partita-scommesse {
-    width: 100%;
-    min-height: auto;
-    padding: 1rem;
-  }
   .partita-categoria h3 { font-size: 0.8rem; margin-bottom: 0.75rem; }
   .tab-categoria th, .tab-categoria td { padding: 0.6rem 0.75rem; font-size: 1rem; }
   .cat-bet { margin-top: 0.75rem; gap: 0.5rem; }
@@ -1933,7 +2123,17 @@ button:hover, .btn:hover {
   .countdown-value { font-size: 1.25rem; }
   .btn-gioca { padding: 0.5rem 1rem; font-size: 0.9rem; }
 
-  /* Quote: 4 colonne affiancate, compatte */
+  /* Virtuali: quote per categoria come partita */
+  .partita-odds-row { padding: 0.75rem; }
+  .partita-odds-row .partita-match { margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .partita-odds-row .quote-per-categoria {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .partita-odds-row .quote-cat { padding: 0.5rem 0.75rem; }
+  .partita-odds-row .odds-btn { min-width: 44px; min-height: 40px; }
+
+  /* Quote: 4 colonne affiancate, compatte (legacy) */
   .quote-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.35rem;
@@ -2009,6 +2209,7 @@ button:hover, .btn:hover {
   .quote-group label { padding: 0.3rem 0.2rem; font-size: 0.72rem; }
   .quote-opzione, .quote-valore { font-size: 0.7rem; }
   .partita-match { font-size: 0.85rem; }
+  .quote-per-categoria { grid-template-columns: 1fr; }
   .site-main { padding: 0.75rem; }
   .site-footer { padding: 1rem; font-size: 0.8rem; }
 }

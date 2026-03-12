@@ -1681,126 +1681,307 @@
   ],
   "classifica": {
     "0": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "1": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "2": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "3": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "4": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "5": {
-      "punti": 0,
+      "punti": 1,
       "vittorie": 0,
-      "pareggi": 0,
+      "pareggi": 1,
       "sconfitte": 0
     },
     "6": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "7": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "8": {
-      "punti": 0,
+      "punti": 1,
       "vittorie": 0,
-      "pareggi": 0,
+      "pareggi": 1,
       "sconfitte": 0
     },
     "9": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "10": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "11": {
-      "punti": 0,
+      "punti": 1,
       "vittorie": 0,
-      "pareggi": 0,
+      "pareggi": 1,
       "sconfitte": 0
     },
     "12": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "13": {
-      "punti": 0,
-      "vittorie": 0,
+      "punti": 3,
+      "vittorie": 1,
       "pareggi": 0,
       "sconfitte": 0
     },
     "14": {
-      "punti": 0,
+      "punti": 1,
       "vittorie": 0,
-      "pareggi": 0,
+      "pareggi": 1,
       "sconfitte": 0
     },
     "15": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "16": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "17": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "18": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     },
     "19": {
       "punti": 0,
       "vittorie": 0,
       "pareggi": 0,
-      "sconfitte": 0
+      "sconfitte": 1
     }
   },
-  "risultati": [],
-  "giornata_corrente": 0
+  "risultati": [
+    {
+      "giornata": 1,
+      "casa": 0,
+      "trasferta": 19,
+      "esito": 0,
+      "gol_casa": 1,
+      "gol_trasferta": 0,
+      "prob": [
+        0.3911042944785276,
+        0.25,
+        0.3588957055214724
+      ],
+      "quote": [
+        2.429019607843137,
+        3.8,
+        2.6470085470085474
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 1,
+      "trasferta": 18,
+      "esito": 0,
+      "gol_casa": 2,
+      "gol_trasferta": 1,
+      "prob": [
+        0.5454545454545454,
+        0.25,
+        0.20454545454545456
+      ],
+      "quote": [
+        1.7416666666666667,
+        3.8,
+        4.644444444444444
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 2,
+      "trasferta": 17,
+      "esito": 0,
+      "gol_casa": 2,
+      "gol_trasferta": 1,
+      "prob": [
+        0.4934210526315789,
+        0.25,
+        0.2565789473684211
+      ],
+      "quote": [
+        1.9253333333333333,
+        3.8,
+        3.702564102564102
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 3,
+      "trasferta": 16,
+      "esito": 0,
+      "gol_casa": 4,
+      "gol_trasferta": 3,
+      "prob": [
+        0.4525862068965517,
+        0.25,
+        0.2974137931034483
+      ],
+      "quote": [
+        2.099047619047619,
+        3.8,
+        3.1942028985507243
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 4,
+      "trasferta": 15,
+      "esito": 0,
+      "gol_casa": 1,
+      "gol_trasferta": 0,
+      "prob": [
+        0.5873493975903614,
+        0.25,
+        0.16265060240963855
+      ],
+      "quote": [
+        1.6174358974358976,
+        3.8,
+        5.84074074074074
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 5,
+      "trasferta": 14,
+      "esito": 1,
+      "gol_casa": 1,
+      "gol_trasferta": 1,
+      "prob": [
+        0.45180722891566266,
+        0.25,
+        0.29819277108433734
+      ],
+      "quote": [
+        2.1026666666666665,
+        3.8,
+        3.185858585858586
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 6,
+      "trasferta": 13,
+      "esito": 2,
+      "gol_casa": 2,
+      "gol_trasferta": 3,
+      "prob": [
+        0.4772727272727273,
+        0.25,
+        0.2727272727272727
+      ],
+      "quote": [
+        1.9904761904761905,
+        3.8,
+        3.4833333333333334
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 7,
+      "trasferta": 12,
+      "esito": 0,
+      "gol_casa": 1,
+      "gol_trasferta": 0,
+      "prob": [
+        0.49789915966386555,
+        0.25,
+        0.25210084033613445
+      ],
+      "quote": [
+        1.9080168776371307,
+        3.8,
+        3.768333333333333
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 8,
+      "trasferta": 11,
+      "esito": 1,
+      "gol_casa": 1,
+      "gol_trasferta": 1,
+      "prob": [
+        0.38461538461538464,
+        0.25,
+        0.36538461538461536
+      ],
+      "quote": [
+        2.4699999999999998,
+        3.8,
+        2.6
+      ]
+    },
+    {
+      "giornata": 1,
+      "casa": 9,
+      "trasferta": 10,
+      "esito": 2,
+      "gol_casa": 0,
+      "gol_trasferta": 1,
+      "prob": [
+        0.3547297297297297,
+        0.25,
+        0.3952702702702703
+      ],
+      "quote": [
+        2.678095238095238,
+        3.8,
+        2.4034188034188033
+      ]
+    }
+  ],
+  "giornata_corrente": 1
 }

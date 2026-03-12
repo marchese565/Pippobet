@@ -87,17 +87,5 @@
     "vincita": 2110.0,
     "id": 8,
     "user_id": 2
-  },
-  {
-    "partita_id": 10,
-    "partita_nome": "Juventus - Torino",
-    "tipo": "Under2.5",
-    "quota": 2.24,
-    "puntata": 2110.0,
-    "esito_partita": "4 gol",
-    "vinto": false,
-    "vincita": 0,
-    "id": 9,
-    "user_id": 2
   }
 ]

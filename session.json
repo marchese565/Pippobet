@@ -4,5 +4,125 @@
     "timestamp": "2026-03-12T03:04:01.272845",
     "squadre": 20,
     "giornate": 38
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.948795",
+    "giornata": 1,
+    "partita": "Inter - Napoli",
+    "esito": "1",
+    "quote": [
+      2.429019607843137,
+      3.8,
+      2.6470085470085474
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.949505",
+    "giornata": 1,
+    "partita": "Juventus - Udinese",
+    "esito": "1",
+    "quote": [
+      1.7416666666666667,
+      3.8,
+      4.644444444444444
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.955450",
+    "giornata": 1,
+    "partita": "Milan - Torino",
+    "esito": "1",
+    "quote": [
+      1.9253333333333333,
+      3.8,
+      3.702564102564102
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.961109",
+    "giornata": 1,
+    "partita": "Roma - Sassuolo",
+    "esito": "1",
+    "quote": [
+      2.099047619047619,
+      3.8,
+      3.1942028985507243
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.966467",
+    "giornata": 1,
+    "partita": "Atalanta - Pisa",
+    "esito": "1",
+    "quote": [
+      1.6174358974358976,
+      3.8,
+      5.84074074074074
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.972845",
+    "giornata": 1,
+    "partita": "Bologna - Parma",
+    "esito": "X",
+    "quote": [
+      2.1026666666666665,
+      3.8,
+      3.185858585858586
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.978973",
+    "giornata": 1,
+    "partita": "Cagliari - Lecce",
+    "esito": "2",
+    "quote": [
+      1.9904761904761905,
+      3.8,
+      3.4833333333333334
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.985325",
+    "giornata": 1,
+    "partita": "Como - Lazio",
+    "esito": "1",
+    "quote": [
+      1.9080168776371307,
+      3.8,
+      3.768333333333333
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.991435",
+    "giornata": 1,
+    "partita": "cremonese - Hellas Verona",
+    "esito": "X",
+    "quote": [
+      2.4699999999999998,
+      3.8,
+      2.6
+    ]
+  },
+  {
+    "tipo": "partita_campionato",
+    "timestamp": "2026-03-12T12:56:53.997448",
+    "giornata": 1,
+    "partita": "Fiorentina - Genoa",
+    "esito": "2",
+    "quote": [
+      2.678095238095238,
+      3.8,
+      2.4034188034188033
+    ]
   }
 ]
