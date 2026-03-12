@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}PIPPObet{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="{{ url_for('index') if current_user else url_for('login') }}" class="logo">
+        <span class="logo-icon">⚽</span>
+        <span class="logo-text">PIPPObet</span>
+        <span class="logo-tagline">Simulatore scommesse</span>
+      </a>
+      {% if current_user %}
+      <nav class="main-nav">
+        <a href="{{ url_for('index') }}" class="nav-link">Partite</a>
+        <a href="{{ url_for('virtuali') }}" class="nav-link nav-highlight">Virtuali</a>
+        <a href="{{ url_for('cronologia') }}" class="nav-link">Cronologia</a>
+        {% if is_admin %}<a href="{{ url_for('admin_dashboard') }}" class="nav-link">Admin</a>{% endif %}
+      </nav>
+      <div class="header-right">
+        <span class="user-name">{{ current_user.username }}{% if is_admin %} <em>(admin)</em>{% endif %}</span>
+        <div class="bankroll-header">
+          <span class="bankroll-val">€{{ "%.2f"|format(bankroll|default(1000)) }}</span>
+          <a href="{{ url_for('bankroll_ricarica') }}" class="btn-ricarica">Ricarica</a>
+        </div>
+        <a href="{{ url_for('logout') }}" class="btn-link" style="margin-left:0.5rem;">Esci</a>
+      </div>
+      {% else %}
+      <div class="header-right">
+        <a href="{{ url_for('login') }}" class="nav-link">Accedi</a>
+        <a href="{{ url_for('registrati') }}" class="nav-link nav-cta">Registrati</a>
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="site-main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, msg in messages %}
+            <div class="flash flash-{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>PIPPObet &mdash; Scommesse simulate | Gioca responsabile</p>
+    </div>
+  </footer>
+</body>
+</html>

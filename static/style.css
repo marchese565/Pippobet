@@ -1,0 +1,1712 @@
+/* BetOdds - Stile sito scommesse professionale */
+
+:root {
+  --bg-dark: #0a0e14;
+  --bg-panel: #111820;
+  --bg-card: #161d28;
+  --bg-elevated: #1c2532;
+  --border: rgba(255,255,255,0.06);
+  --text: #f0f4f8;
+  --text-dim: #8896a6;
+  --text-muted: #5c6b7a;
+  --green: #00d26a;
+  --green-hover: #00e676;
+  --green-dim: rgba(0,210,106,0.15);
+  --red: #ff4757;
+  --red-dim: rgba(255,71,87,0.15);
+  --gold: #ffc107;
+  --gold-dim: rgba(255,193,7,0.15);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --font: 'Outfit', -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(17,24,32,0.95) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.header-right { display: flex; align-items: center; gap: 0.5rem; }
+.user-name { font-size: 0.9rem; color: var(--text-dim); }
+.user-name em { font-style: italic; color: var(--gold); }
+
+.bankroll-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--green-dim);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.bankroll-val { font-weight: 700; color: var(--green); font-size: 1.1rem; }
+.btn-ricarica {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--green);
+  color: var(--bg-dark);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.btn-ricarica:hover { background: var(--green-hover); color: var(--bg-dark); }
+
+/* Ricarica bankroll - pagina centrata */
+.ricarica-wrapper {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.ricarica-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 360px;
+}
+
+.ricarica-box h2 { margin: 0 0 1rem 0; }
+
+/* Auth - Login / Registrati */
+.auth-box {
+  max-width: 360px;
+  margin: 2rem auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.auth-box h1 { margin: 0 0 1.5rem 0; font-size: 1.5rem; }
+.form-auth label { display: block; margin-bottom: 0.4rem; color: var(--text-dim); font-size: 0.9rem; }
+.form-auth input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 1rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+.form-auth button { width: 100%; margin-top: 0.5rem; }
+.auth-link { margin-top: 1.25rem; text-align: center; font-size: 0.9rem; }
+.auth-link a { color: var(--green); }
+
+/* Admin */
+.admin-stats { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.admin-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  min-width: 120px;
+}
+.stat-num { display: block; font-size: 1.5rem; font-weight: 700; color: var(--green); }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); }
+.badge-admin { background: var(--gold-dim); color: var(--gold); }
+.form-inline { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: flex-end; }
+.form-inline input, .form-inline select { margin-bottom: 0; }
+.form-inline input { flex: 1; min-width: 100px; }
+.form-inline select { padding: 0.65rem; background: var(--bg-dark); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+.btn-small { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
+.bankroll-attuale { color: var(--text-dim); margin-bottom: 1.5rem; }
+.form-ricarica label { display: block; margin-bottom: 0.4rem; color: var(--text-dim); }
+.form-ricarica input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--green), #00b359);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-tagline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+}
+
+.main-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--green);
+  background: var(--green-dim);
+}
+
+.nav-highlight {
+  color: var(--green);
+  background: var(--green-dim);
+}
+
+.nav-cta {
+  color: var(--bg-dark);
+  background: var(--green);
+}
+
+.nav-cta:hover {
+  background: var(--green-hover);
+  color: var(--bg-dark);
+}
+
+/* Main */
+.site-main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.flash-container {
+  margin-bottom: 1.5rem;
+}
+
+.flash {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.flash-error { background: var(--red-dim); color: #ff6b7a; border: 1px solid rgba(255,71,87,0.3); }
+.flash-info { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,210,106,0.3); }
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+/* Partite list */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  margin: 0 0 0.6rem 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.partite-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.partita-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.partita-card:hover {
+  border-color: rgba(0,210,106,0.3);
+}
+
+.partita-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.partita-nome {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.partita-quote {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.partita-quote span {
+  margin: 0 0.5rem;
+  color: var(--text-muted);
+}
+
+.esito-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.esito-badge:not(.esito-1):not(.esito-X):not(.esito-2) {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+.esito-1 { background: var(--green-dim); color: var(--green); }
+.esito-X { background: var(--gold-dim); color: var(--gold); }
+.esito-2 { background: rgba(59,130,246,0.2); color: #60a5fa; }
+
+/* Forms */
+.form-partita, .form-scommessa {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: var(--radius);
+  max-width: 420px;
+}
+
+.form-partita label, .form-scommessa label, .scommessa-puntata label,
+.menu-dati-partita label {
+  display: block;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.form-partita input, .form-scommessa input,
+.menu-dati-partita input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-partita input:focus, .form-scommessa input:focus,
+.menu-dati-partita input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+/* Nuova partita: semplice e intuitivo */
+.form-nuova-partita {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 100%;
+}
+
+.form-nuova-partita .menus-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.menu-dati-partita,
+.menu-quote-partita {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.menu-dati-partita { width: 280px; min-width: 260px; }
+.menu-quote-partita {
+  width: 770px;
+  min-width: 770px;
+  border-left: 3px solid var(--green);
+}
+
+.menu-titolo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--text);
+}
+
+.menu-titolo em {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* Dati partita: pulito */
+.input-nome {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.input-nome:focus { outline: none; border-color: var(--green); }
+.input-nome::placeholder { color: var(--text-muted); }
+
+.dati-riga {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: -10px;
+}
+
+.dati-cell {
+  flex: 1;
+  min-width: 58px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.dati-cell span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.dati-cell input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+.dati-cell input:focus { outline: none; border-color: var(--green); }
+
+/* Nasconde frecce click su input number - solo tastiera */
+.form-nuova-partita input[type="number"]::-webkit-outer-spin-button,
+.form-nuova-partita input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-nuova-partita input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Quote: 3 colonne, minimale */
+.quote-griglia {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.quote-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.quote-col .quote-gruppo {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.quote-col input {
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+.quote-col input:focus { outline: none; border-color: var(--green); }
+.quote-col input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+@media (max-width: 900px) {
+  .form-nuova-partita .menus-row { flex-direction: column; gap: 1.25rem; }
+  .menu-dati-partita { width: 100%; max-width: 340px; }
+  .menu-quote-partita { width: 100%; min-width: 0; max-width: 770px; }
+}
+
+/* Fallback per quote-menu-tabella se usata altrove */
+.quote-menu-tabella {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.quote-menu-tabella thead th { padding: 0.4rem 0.5rem; text-align: left; font-weight: 600; color: var(--text-dim); font-size: 0.7rem; }
+.quote-menu-tabella tbody td, .quote-menu-tabella tbody th { padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border); }
+.quote-menu-tabella input { padding: 0.35rem 0.5rem; font-size: 0.8rem; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 4px; color: var(--text); }
+
+.form-actions-full { margin-top: 0.25rem; }
+.form-nuova-partita .form-actions button { padding: 0.5rem 1rem; font-size: 0.9rem; }
+
+
+.form-section { font-size: 1rem; margin: 1.5rem 0 0.75rem 0; color: var(--text-dim); }
+.form-hint { font-size: 0.85rem; color: var(--text-muted); margin: -0.5rem 0 0.75rem 0; }
+
+.quote-ou {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.quote-ou .quote-label { min-width: auto; margin-right: 0.25rem; }
+.quote-ou .quote-val { margin-right: 1rem; }
+
+.form-actions {
+  margin-top: 1.75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Buttons */
+button, .btn {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+button:hover, .btn:hover {
+  background: var(--green-hover);
+  transform: translateY(-1px);
+}
+
+.btn-link {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.btn-link:hover { color: var(--green); }
+
+/* Pagina partita singola */
+.partita-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.partita-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: all 0.2s;
+}
+.partita-back:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.partita-titolo { flex: 1; }
+.partita-titolo h1 { margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+.partita-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 20px;
+}
+.partita-badge.partita-aperta {
+  background: var(--green-dim);
+  color: var(--green);
+}
+.partita-badge.partita-chiusa {
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+/* Partita: tabelle 500x300 separate per categoria */
+.partita-griglia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+}
+
+.partita-categoria {
+  width: 175px;
+  min-height: 300px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.partita-categoria.partita-scommesse {
+  width: 250px;
+}
+
+.partita-categoria h3 {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.tab-categoria {
+  width: 100%;
+  font-size: 1rem;
+  border-collapse: collapse;
+  flex: 1;
+}
+
+.tab-categoria th, .tab-categoria td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.tab-categoria th { color: var(--text-dim); font-weight: 500; width: 40%; }
+.tab-categoria td { color: var(--green); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.cat-bet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.bet-riga {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0;
+  transition: all 0.2s;
+}
+
+.bet-riga:hover { border-color: var(--green); }
+.bet-riga input { display: none; }
+.bet-riga:has(input:checked) {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.bet-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.bet-input-group label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.bet-input-group input {
+  width: 100px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+}
+
+.vincita-mostra {
+  padding: 0.5rem 1rem;
+  background: var(--green-dim);
+  border-radius: 6px;
+  border: 1px solid rgba(0,210,106,0.3);
+}
+
+.vincita-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.vincita-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.tab-scommesse td { color: inherit; font-weight: 400; }
+.tab-scommesse td:first-child { font-size: 0.85rem; }
+.tab-scommesse .sc-esito { width: 1%; white-space: nowrap; }
+.tab-scommesse .sc-del { width: 1%; padding: 0; }
+.tab-scommesse .sc-del form { display: inline; margin: 0; }
+.tab-scommesse .sc-del button {
+  width: 24px; height: 24px; padding: 0; font-size: 1rem; line-height: 1;
+  background: transparent; color: var(--text-muted); border: none; cursor: pointer;
+}
+.tab-scommesse .sc-del button:hover { color: var(--red); }
+.tab-scommesse tr.vinta td:first-child { padding-left: 0.5rem; border-left: 3px solid var(--green); }
+.tab-scommesse tr.persa td:first-child { padding-left: 0.5rem; border-left: 3px solid var(--red); }
+.tab-vuota { font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0 0 0; }
+
+.form-scommessa-partita input[type="number"]::-webkit-outer-spin-button,
+.form-scommessa-partita input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-scommessa-partita input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* vecchi stili partita (backup) */
+.quote-scheda {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.quote-gruppo {
+  margin-bottom: 1rem;
+}
+.quote-gruppo:last-child { margin-bottom: 0; }
+.quote-gruppo-titolo {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.quote-gruppo.quote-doppie .quote-opt { background: var(--green-dim); border-color: rgba(0,210,106,0.25); }
+.quote-righe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.quote-righe.quote-ou-compact { gap: 0.4rem; }
+.quote-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.q-lab { color: var(--text-dim); }
+.q-val { font-weight: 600; color: var(--green); font-variant-numeric: tabular-nums; }
+
+.scommessa-scheda {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.scommessa-scheda h3 {
+  font-size: 0.95rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-dim);
+}
+.scommessa-opzioni { margin-bottom: 1rem; }
+.scommessa-gruppo-titolo {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.75rem 0 0.35rem 0;
+}
+.scommessa-gruppo-titolo:first-child { margin-top: 0; }
+.scommessa-riga { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.bet-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin: 0;
+  transition: all 0.2s;
+}
+.bet-opt:hover { border-color: var(--green); }
+.bet-opt input { display: none; }
+.bet-opt:has(input:checked) {
+  background: var(--green-dim);
+  border-color: var(--green);
+}
+.bet-opt:has(input:checked) .bet-quota { color: var(--green); font-weight: 600; }
+.bet-lab { color: var(--text); }
+.bet-quota { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+.bet-doppia { background: rgba(0,210,106,0.06); }
+
+.scommessa-submit {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.puntata-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.puntata-field label { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+.puntata-field input {
+  width: 100px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+}
+.form-scommessa-partita input[type="number"]::-webkit-outer-spin-button,
+.form-scommessa-partita input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-scommessa-partita input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.btn-scommetti {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+}
+
+.partita-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+.scommesse-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  position: sticky;
+  top: 90px;
+}
+.scommesse-card h3 {
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-dim);
+}
+.scommesse-list { list-style: none; padding: 0; margin: 0; }
+.scommessa-card-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-dark);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid var(--border);
+}
+.scommessa-card-item.in-attesa { border-left-color: var(--text-muted); }
+.scommessa-card-item.vinta { border-left-color: var(--green); }
+.scommessa-card-item.persa { border-left-color: var(--red); }
+.scommessa-card-item .sc-main { flex: 1; min-width: 0; font-size: 0.9rem; }
+.sc-tipo { font-weight: 600; }
+.sc-quota { color: var(--text-dim); margin-left: 0.25rem; }
+.sc-puntata { color: var(--green); margin-left: 0.5rem; }
+.sc-esito { font-size: 0.85rem; }
+.sc-elimina { margin: 0; }
+.sc-elimina button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sc-elimina button:hover {
+  color: var(--red);
+  border-color: rgba(255,71,87,0.4);
+}
+
+.partita-azioni {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.link-back { margin-top: 1.5rem; }
+.link-back a { color: var(--text-muted); font-size: 0.9rem; }
+
+/* Quote display - layout pulito (per altre pagine) */
+.quote-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+
+.quote-box h2, .scommessa-box h2 {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.quote-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.quote-sezione {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quote-sezione-titolo {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.quote-griglia-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.quote-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem 0.5rem;
+  background: var(--bg-dark);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.quote-cell.quote-doppia {
+  background: var(--green-dim);
+  border-color: rgba(0, 210, 106, 0.25);
+}
+
+.quote-lab {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 0.2rem;
+}
+
+.quote-num {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scommessa form - allineato alle quote */
+.scommessa-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.scommessa-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.scommessa-sezione {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scommessa-sezione-titolo {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.scommessa-griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.scommessa-opt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.55rem 0.5rem;
+  background: var(--bg-dark);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.scommessa-opt:hover {
+  border-color: var(--green);
+}
+
+.scommessa-opt input { display: none; }
+.scommessa-opt:has(input:checked) {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.scommessa-puntata { margin-bottom: 1rem; }
+.scommessa-puntata label { display: block; margin-bottom: 0.35rem; color: var(--text-dim); font-size: 0.85rem; }
+.scommessa-puntata input { max-width: 120px; padding: 0.5rem 0.75rem; }
+
+.azioni-partita {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form-simula { margin-bottom: 0; }
+
+.btn-simula {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-simula:hover {
+  background: var(--bg-card);
+  border-color: var(--green);
+}
+
+.btn-nuova {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--green);
+  background: transparent;
+  border: 1px solid var(--green);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-nuova:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+}
+
+.btn-nuova-header { margin-top: 0.5rem; display: inline-block; }
+
+/* Scommesse list */
+.scommesse-lista h2 { font-size: 1rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+.scommesse-lista ul { list-style: none; padding: 0; margin: 0; }
+.scommessa-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.scommessa-item .scommessa-testo { flex: 1; }
+.scommessa-item .scommessa-elimina-form { flex-shrink: 0; }
+.scommessa-elimina-form { display: inline; }
+.vinto { color: var(--green); font-weight: 600; }
+.perso { color: var(--red); }
+.in-attesa { color: var(--text-muted); }
+
+/* Tabella cronologia */
+.tabella-cronologia {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.tabella-cronologia th, .tabella-cronologia td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabella-cronologia th {
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tabella-cronologia tr:hover td { background: rgba(255,255,255,0.02); }
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--green-dim);
+  color: var(--green);
+  border-radius: 4px;
+}
+
+.badge-virtual {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+.schedina-cronologia {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.schedina-cronologia .sel {
+  display: block;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.schedina-riepilogo { margin-top: 0.5rem; font-weight: 500; }
+
+.empty, .empty-state { color: var(--text-dim); }
+.empty-state { padding: 3rem 2rem; text-align: center; }
+.empty-state p { margin: 0.5rem 0; }
+
+/* Init campionato */
+.init-campionato {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 500px;
+}
+
+.init-campionato h2 { margin: 0 0 1rem 0; }
+.init-campionato p { margin: 0.5rem 0; color: var(--text-dim); }
+
+.squadre-info { margin-top: 1rem !important; }
+.squadre-preview {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.squadre-preview li { padding: 0.25rem 0; }
+
+.btn-init {
+  background: linear-gradient(135deg, var(--green), #00b359);
+  padding: 0.85rem 1.75rem;
+  font-size: 1.1rem;
+}
+
+.campionato-finito {
+  text-align: center;
+  padding: 3rem;
+}
+
+.campionato-finito h2 { margin-bottom: 0.5rem; }
+.form-reinit { margin-top: 1.5rem; }
+
+/* Countdown */
+.countdown-bar {
+  background: var(--green-dim);
+  border: 1px solid rgba(0,210,106,0.3);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.countdown-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.countdown-label { color: var(--text-dim); }
+.countdown-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-hint {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.countdown-bar.countdown-urgent .countdown-value { color: var(--gold); }
+.countdown-bar.countdown-urgent { background: var(--gold-dim); border-color: rgba(255,193,7,0.3); }
+.countdown-bar.countdown-expired { opacity: 0.7; }
+
+/* Virtuali con schedina laterale */
+.virtuali-with-schedina {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.virtuali-centro {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .virtuali-centro { grid-template-columns: 1fr; }
+}
+
+.virtuali-destra {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.schedina-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  position: sticky;
+  top: 90px;
+}
+
+.calendario-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+
+.calendario-panel h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-dim);
+}
+
+.calendario-giornate {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.calendario-giornata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cal-giornata-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 0.15rem;
+}
+
+.cal-partita {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.calendario-panel.calendario-standalone {
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.schedina-panel h3 {
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-dim);
+}
+
+.schedina-riepilogo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.riep-selezioni {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.sel-item {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.sel-item-live {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+.sel-item-live .sel-item-testo { flex: 1; min-width: 0; }
+.btn-rimuovi-live {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.btn-rimuovi-live:hover {
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.riep-riga {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.riep-riga .vincita { color: var(--green); }
+
+.sel-row {
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.sel-row .sel-testo { flex: 1; min-width: 0; }
+.sel-sbagliata { color: var(--red); }
+.sel-elimina-form { flex-shrink: 0; }
+.btn-elimina-evento {
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.btn-elimina-evento:hover {
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+}
+.schedina-tot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.schedina-elimina-form,
+.schedina-elimina-form-inline { display: inline; margin-left: auto; }
+.btn-elimina-schedina {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-elimina-schedina:hover {
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+.sel-wrap { display: inline-flex; align-items: center; gap: 0.25rem; margin-right: 0.5rem; margin-bottom: 0.25rem; }
+.sel-wrap .sel-elimina-form { margin-left: 0.15rem; }
+
+.schedine-panel { margin-top: 2rem; }
+.schedine-panel h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--text-dim); }
+
+@media (max-width: 1100px) {
+  .virtuali-with-schedina { flex-direction: column; }
+  .virtuali-destra { width: 100%; }
+  .schedina-panel { position: static; }
+  .calendario-panel.calendario-standalone { max-width: none; }
+}
+
+/* Virtuali */
+.virtuali-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .virtuali-layout { grid-template-columns: 1fr; }
+}
+
+.classifica-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+
+.classifica-panel h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.giornata-info {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 1rem 0;
+}
+
+.tabella-classifica {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.tabella-classifica th, .tabella-classifica td {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabella-classifica td:first-child { color: var(--text-muted); }
+.tabella-classifica td:nth-child(2) { font-weight: 500; }
+
+.partite-virtuali h2 { margin: 0 0 1rem 0; }
+
+.form-gioca { margin-bottom: 1.5rem; }
+
+.btn-gioca {
+  background: linear-gradient(135deg, var(--green), #00b359);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.partite-list { list-style: none; padding: 0; margin: 0; }
+
+/* Virtuali compact */
+.virtuali-compact { font-size: 0.9rem; }
+.page-header-sm h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.page-header-sm .subtitle { font-size: 0.9rem; }
+.classifica-sm { padding: 1rem; }
+.classifica-sm h2 { font-size: 1rem; margin-bottom: 0.4rem; }
+.giornata-info { font-size: 0.8rem; margin-top: 0.25rem; }
+.tabella-sm { font-size: 0.8rem; }
+.tabella-sm th, .tabella-sm td { padding: 0.3rem 0.4rem; }
+.countdown-sm { padding: 0.75rem 1rem; }
+.countdown-sm .countdown-value { font-size: 1.4rem; }
+.countdown-sm .countdown-hint { display: none; }
+.partite-sm h2 { font-size: 1rem; margin-bottom: 0.5rem; }
+.btn-sm { padding: 0.5rem 1rem; font-size: 0.9rem; }
+.init-sm { padding: 1.5rem; max-width: 400px; }
+.init-sm h2 { font-size: 1.1rem; }
+
+.partita-virtuale {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.partita-sm { padding: 0.6rem 0.9rem; }
+.partita-match { font-weight: 600; font-size: 0.95rem; display: block; margin-bottom: 0.4rem; }
+
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 1.25rem;
+}
+
+.quote-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quote-group .group-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.quote-group label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-dark);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  gap: 0.75rem;
+}
+
+.quote-group label:hover { border-color: rgba(0,210,106,0.4); }
+.quote-group input:checked + span { color: var(--green); font-weight: 600; }
+.quote-group label span { display: flex; justify-content: space-between; width: 100%; }
+.quote-opzione { color: var(--text-dim); }
+.quote-valore { color: var(--green); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 900px) {
+  .quote-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.quote-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quote-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  background: var(--bg-dark);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  transition: all 0.15s;
+}
+
+.quote-row label:hover { border-color: var(--green); }
+.quote-row input:checked + .quota { color: var(--green); font-weight: 600; }
+.quote-row .quota { font-variant-numeric: tabular-nums; }
+
+.schedina-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  flex-wrap: wrap;
+}
+
+.vincita-potenziale { font-weight: 600; color: var(--green); }
+.vuoto { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+
+.schedina-actions input {
+  width: 90px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.btn-schedina {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.schedine-panel {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.schedine-panel h3 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text-dim); }
+
+.schedina-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.schedina-vinta { border-color: rgba(0,210,106,0.4); background: var(--green-dim); }
+.schedina-persa { border-color: rgba(255,71,87,0.3); }
+
+.schedina-selezioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.schedina-selezioni .sel {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.schedina-tot { font-size: 0.85rem; }
+.esito-vinto { color: var(--green); font-weight: 600; margin-left: 0.5rem; }
+.esito-perso { color: var(--red); margin-left: 0.5rem; }
+
+/* Footer */
+.site-footer {
+  margin-top: auto;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-inner { max-width: 1200px; margin: 0 auto; }

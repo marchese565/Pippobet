@@ -1,0 +1,15 @@
+[
+  {
+    "giornata": 1,
+    "ic": 7,
+    "it": 12,
+    "partita_nome": "Como - Lazio",
+    "tipo": "1",
+    "quota": 1.91,
+    "puntata": 1.0,
+    "id": 1,
+    "esito_partita": "X",
+    "vinto": false,
+    "vincita": 0
+  }
+]

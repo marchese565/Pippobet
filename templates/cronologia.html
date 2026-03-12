@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Cronologia - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Cronologia</h1>
+  <p class="subtitle">Scommesse e schedine</p>
+</div>
+
+{% if scommesse %}
+<h2>Scommesse singole</h2>
+<table class="tabella-cronologia">
+  <thead>
+    <tr>
+      <th>Partita</th>
+      <th>Tipo</th>
+      <th>Quota</th>
+      <th>Puntata</th>
+      <th>Risultato</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in scommesse|reverse %}
+    <tr>
+      <td>{{ s.partita_nome }}</td>
+      <td>{{ s.tipo }}</td>
+      <td>{{ "%.2f"|format(s.quota) }}</td>
+      <td>€{{ "%.2f"|format(s.puntata) }}</td>
+      <td>
+        {% if s.vinto is not none %}
+          {% if s.vinto %}<span class="vinto">+€{{ "%.2f"|format(s.vincita) }}</span>
+          {% else %}<span class="perso">-€{{ "%.2f"|format(s.puntata) }}</span>{% endif %}
+        {% else %}<span class="in-attesa">-</span>{% endif %}
+      </td>
+      <td>
+        <form method="post" action="{{ url_for('scommessa_elimina', scommessa_id=s.id) }}" class="scommessa-elimina-form">
+          <button type="submit" class="btn-elimina-schedina" title="Elimina scommessa">Elimina</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% if schedine %}
+<h2>Schedine virtuali</h2>
+{% for sch in schedine|reverse %}
+<div class="schedina-cronologia">
+  <span class="badge">G. {{ sch.giornata }}</span>
+  {% for sel in sch.selezioni %}
+  <span class="sel-wrap">
+    <span class="sel {% if sel.corretto is defined and not sel.corretto %}sel-sbagliata{% endif %}">{{ sel.partita_nome }} → {{ sel.tipo }}{% if sel.corretto is defined %}{% if sel.corretto %} ✓{% else %} ✗ (esito: {{ sel.esito_reale }}){% endif %}{% endif %}</span>
+    {% if sch.vinto is none %}
+    <form method="post" action="{{ url_for('virtuali_schedina_evento_elimina', schedina_id=sch.id, ic=sel.ic, it=sel.it) }}" class="sel-elimina-form">
+      <button type="submit" class="btn-elimina-evento" title="Elimina evento">×</button>
+    </form>
+    {% endif %}
+  </span>
+  {% endfor %}
+  <div class="schedina-riepilogo">
+    Quota {{ "%.2f"|format(sch.quota_combinata) }} | Puntata €{{ "%.2f"|format(sch.puntata) }}
+    {% if sch.vinto is not none %}
+      {% if sch.vinto %}<span class="vinto">VINTO €{{ "%.2f"|format(sch.vincita) }}</span>
+      {% else %}<span class="perso">Perso ({{ sch.eventi_sbagliati }} eventi sbagliati)</span>{% endif %}
+    {% else %}<span class="in-attesa">In attesa</span>{% endif %}
+    <form method="post" action="{{ url_for('virtuali_schedina_elimina', schedina_id=sch.id) }}" class="schedina-elimina-form-inline">
+      <button type="submit" class="btn-elimina-schedina" title="Elimina schedina">Elimina</button>
+    </form>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if not scommesse and not schedine %}
+<p class="empty">Nessuna scommessa o schedina.</p>
+{% endif %}
+
+<p><a href="{{ url_for('index') }}">&larr; Partite</a> · <a href="{{ url_for('virtuali') }}">Virtuali</a></p>
+{% endblock %}

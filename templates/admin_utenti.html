@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Gestione utenti - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Gestione utenti</h1>
+  <p class="subtitle">Crea e gestisci gli account</p>
+</div>
+
+<div class="card">
+  <h2>Crea nuovo utente</h2>
+  <form method="post" action="{{ url_for('admin_utente_crea') }}" class="form-auth form-inline">
+    <input type="text" name="username" required placeholder="Username" minlength="2">
+    <input type="password" name="password" required placeholder="Password" minlength="4">
+    <select name="ruolo">
+      <option value="user">Utente</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button type="submit">Crea utente</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Utenti registrati</h2>
+  <table class="tabella-cronologia">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Ruolo</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in utenti %}
+      <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+        <td><span class="badge {% if u.ruolo == 'admin' %}badge-admin{% endif %}">{{ u.ruolo }}</span></td>
+        <td>
+          {% if u.id != current_user.id %}
+          <form method="post" action="{{ url_for('admin_utente_ruolo', user_id=u.id) }}" style="display:inline;">
+            <input type="hidden" name="ruolo" value="{{ 'user' if u.ruolo == 'admin' else 'admin' }}">
+            <button type="submit" class="btn-small">{{ 'Rendi utente' if u.ruolo == 'admin' else 'Rendi admin' }}</button>
+          </form>
+          {% else %}
+          <em>Tu</em>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p><a href="{{ url_for('admin_dashboard') }}" class="btn-link">&larr; Torna alla dashboard</a></p>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Admin - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Pannello Admin</h1>
+  <p class="subtitle">Gestione utenti e overview</p>
+</div>
+
+<div class="admin-stats">
+  <div class="admin-stat">
+    <span class="stat-num">{{ utenti|length }}</span>
+    <span class="stat-label">Utenti</span>
+  </div>
+  <div class="admin-stat">
+    <span class="stat-num">{{ partite_totali }}</span>
+    <span class="stat-label">Partite totali</span>
+  </div>
+  <div class="admin-stat">
+    <span class="stat-num">{{ scommesse_totali }}</span>
+    <span class="stat-label">Scommesse</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Utenti</h2>
+  <table class="tabella-cronologia">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Ruolo</th>
+        <th>Bankroll</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in utenti %}
+      <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+        <td><span class="badge {% if u.ruolo == 'admin' %}badge-admin{% endif %}">{{ u.ruolo }}</span></td>
+        <td>€{{ "%.2f"|format(bankroll_per_user.get(u.id|string, 1000)) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p><a href="{{ url_for('admin_utenti') }}" class="btn">Gestisci utenti</a></p>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Partite - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Partite in programma</h1>
+  <p class="subtitle">Crea partite custom e scommetti</p>
+  <a href="{{ url_for('nuova_partita') }}" class="btn-nuova btn-nuova-header">+ Nuova partita</a>
+</div>
+
+{% if partite %}
+  <ul class="partite-lista">
+    {% for p in partite %}
+    <li class="partita-card">
+      <a href="{{ url_for('partita', partita_id=p.id) }}" class="partita-link">
+        <span class="partita-nome">{{ p.nome }}</span>
+        <span class="partita-quote">
+          1: {{ p.quote.1 }} &nbsp; X: {{ p.quote.X }} &nbsp; 2: {{ p.quote.2 }}
+        </span>
+        {% if p.esito_label %}
+          <span class="esito-badge esito-{{ p.esito_label }}">{{ p.esito_label }}</span>
+        {% else %}
+          <span class="esito-badge">Aperta</span>
+        {% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="empty">Nessuna partita. <a href="{{ url_for('nuova_partita') }}">Creane una</a>.</p>
+{% endif %}
+{% endblock %}

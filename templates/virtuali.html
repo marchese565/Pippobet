@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% block title %}Virtuali - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header page-header-sm">
+  <h1>Scommesse Virtuali</h1>
+  <p class="subtitle">Schedina sul campionato simulato</p>
+</div>
+
+{% if not campionato %}
+  <div class="init-campionato init-sm">
+    <h2>Nuovo campionato</h2>
+    <p>Genera un nuovo campionato. Avrai 3 minuti per ogni giornata.</p>
+    {% if squadre and squadre|length >= 2 %}
+      <form method="post" action="{{ url_for('virtuali_inizializza') }}">
+        <button type="submit" class="btn-init">Inizializza campionato</button>
+      </form>
+    {% else %}
+      <p class="empty-state">Servono almeno 2 squadre.</p>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="virtuali-with-schedina">
+    <div class="virtuali-centro">
+      <aside class="classifica-panel classifica-sm">
+        <h2>Classifica</h2>
+        <p class="giornata-info">G. {{ giornata_num }}/{{ tot_giornate }}</p>
+        <table class="tabella-classifica tabella-sm">
+          <thead>
+            <tr><th>#</th><th>Squadra</th><th>Pt</th><th>V</th><th>N</th><th>P</th></tr>
+          </thead>
+          <tbody>
+            {% for pos, nome, dati in classifica %}
+            <tr>
+              <td>{{ pos }}</td><td>{{ nome }}</td><td><strong>{{ dati.punti }}</strong></td>
+              <td>{{ dati.vittorie }}</td><td>{{ dati.pareggi }}</td><td>{{ dati.sconfitte }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </aside>
+
+      <main class="partite-virtuali partite-sm">
+        {% if partite_giornata %}
+          <div class="countdown-bar countdown-sm" id="countdown-bar">
+            <span class="countdown-label">Tempo:</span>
+            <span class="countdown-value" id="countdown">--:--</span>
+          </div>
+
+          <h2>Giornata {{ giornata_num }}</h2>
+          <form method="post" action="{{ url_for('virtuali_gioca_giornata') }}" id="form-gioca">
+            <button type="submit" class="btn-gioca btn-sm">Gioca giornata</button>
+          </form>
+
+          <form method="post" action="{{ url_for('virtuali_schedina') }}" class="form-schedina" id="form-schedina">
+            <ul class="partite-list partite-list-sm">
+              {% for p in partite_giornata %}
+              <li class="partita-virtuale partita-sm">
+                <span class="partita-match">{{ p.casa }} – {{ p.trasferta }}</span>
+                <div class="quote-grid">
+                  <div class="quote-group">
+                    <span class="group-label">Esito</span>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1" data-quota="{{ "%.2f"|format(p.quote['1']) }}"><span><span class="quote-opzione">1</span><span class="quote-valore">{{ "%.2f"|format(p.quote['1']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X" data-quota="{{ "%.2f"|format(p.quote['X']) }}"><span><span class="quote-opzione">X</span><span class="quote-valore">{{ "%.2f"|format(p.quote['X']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="2" data-quota="{{ "%.2f"|format(p.quote['2']) }}"><span><span class="quote-opzione">2</span><span class="quote-valore">{{ "%.2f"|format(p.quote['2']) }}</span></span></label>
+                  </div>
+                  <div class="quote-group">
+                    <span class="group-label">Doppie</span>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="1X" data-quota="{{ "%.2f"|format(p.quote['1X']) }}"><span><span class="quote-opzione">1X</span><span class="quote-valore">{{ "%.2f"|format(p.quote['1X']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="X2" data-quota="{{ "%.2f"|format(p.quote['X2']) }}"><span><span class="quote-opzione">X2</span><span class="quote-valore">{{ "%.2f"|format(p.quote['X2']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="12" data-quota="{{ "%.2f"|format(p.quote['12']) }}"><span><span class="quote-opzione">12</span><span class="quote-valore">{{ "%.2f"|format(p.quote['12']) }}</span></span></label>
+                  </div>
+                  <div class="quote-group">
+                    <span class="group-label">Over</span>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over1.5" data-quota="{{ "%.2f"|format(p.quote['Over1.5']) }}"><span><span class="quote-opzione">O1.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over1.5']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over2.5" data-quota="{{ "%.2f"|format(p.quote['Over2.5']) }}"><span><span class="quote-opzione">O2.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over2.5']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Over3.5" data-quota="{{ "%.2f"|format(p.quote['Over3.5']) }}"><span><span class="quote-opzione">O3.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Over3.5']) }}</span></span></label>
+                  </div>
+                  <div class="quote-group">
+                    <span class="group-label">Under</span>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under1.5" data-quota="{{ "%.2f"|format(p.quote['Under1.5']) }}"><span><span class="quote-opzione">U1.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under1.5']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under2.5" data-quota="{{ "%.2f"|format(p.quote['Under2.5']) }}"><span><span class="quote-opzione">U2.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under2.5']) }}</span></span></label>
+                    <label><input type="radio" name="sel_{{ p.ic }}_{{ p.it }}" value="Under3.5" data-quota="{{ "%.2f"|format(p.quote['Under3.5']) }}"><span><span class="quote-opzione">U3.5</span><span class="quote-valore">{{ "%.2f"|format(p.quote['Under3.5']) }}</span></span></label>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </form>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            (function() {
+              var form = document.getElementById('form-schedina');
+              var puntataInp = document.getElementById('puntata-schedina');
+              var panel = document.getElementById('schedina-panel');
+              var selezioniEl = document.getElementById('schedina-selezioni');
+              var quotaEl = document.getElementById('schedina-quota');
+              var vincitaEl = document.getElementById('schedina-vincita');
+              function aggiorna() {
+                if (!selezioniEl || !quotaEl || !vincitaEl) return;
+                var checked = form.querySelectorAll('input[type="radio"]:checked');
+                var tot = 1;
+                var items = [];
+                checked.forEach(function(r) {
+                  var q = parseFloat(r.getAttribute('data-quota')) || 1;
+                  tot *= q;
+                  var lab = r.closest('li').querySelector('.partita-match');
+                  items.push({ match: lab ? lab.textContent.trim() : '', tipo: r.value, quota: q, radio: r });
+                });
+                var puntata = parseFloat(puntataInp.value) || 0;
+                if (items.length > 0) {
+                  selezioniEl.innerHTML = items.map(function(i, idx) {
+                    return '<div class="sel-item sel-item-live">' +
+                      '<span class="sel-item-testo">' + i.match + ' → ' + i.tipo + ' @ ' + i.quota.toFixed(2) + '</span>' +
+                      '<button type="button" class="btn-rimuovi-live" title="Rimuovi" data-idx="' + idx + '">×</button>' +
+                    '</div>';
+                  }).join('');
+                  selezioniEl.querySelectorAll('.btn-rimuovi-live').forEach(function(btn, idx) {
+                    btn.addEventListener('click', function() {
+                      var it = items[idx];
+                      if (it && it.radio) { it.radio.checked = false; aggiorna(); }
+                    });
+                  });
+                  quotaEl.textContent = tot.toFixed(2);
+                  vincitaEl.textContent = puntata > 0 ? '€' + (puntata * tot).toFixed(2) : '—';
+                } else {
+                  selezioniEl.innerHTML = '<p class="vuoto">Seleziona almeno una partita</p>';
+                  quotaEl.textContent = '—';
+                  vincitaEl.textContent = '—';
+                }
+              }
+              form.addEventListener('change', aggiorna);
+              puntataInp.addEventListener('input', aggiorna);
+              aggiorna();
+            })();
+            });
+          </script>
+        {% else %}
+          <div class="campionato-finito">
+            <h2>Campionato concluso!</h2>
+            <form method="post" action="{{ url_for('virtuali_inizializza') }}">
+              <button type="submit" class="btn-init">Nuovo campionato</button>
+            </form>
+          </div>
+        {% endif %}
+      </main>
+    </div>
+
+    {% if partite_giornata %}
+    <div class="virtuali-destra">
+      <aside class="schedina-panel" id="schedina-panel">
+        <h3>La tua schedina</h3>
+        <div class="schedina-riepilogo">
+          <div class="riep-selezioni" id="schedina-selezioni">
+            <p class="vuoto">Seleziona almeno una partita</p>
+          </div>
+          <div class="riep-riga"><span>Quota totale</span><strong id="schedina-quota">—</strong></div>
+          <div class="riep-riga"><span>Vincita potenziale</span><strong class="vincita" id="schedina-vincita">—</strong></div>
+        </div>
+        <div class="schedina-actions">
+          <label>Puntata € <input type="number" name="puntata" id="puntata-schedina" form="form-schedina" step="0.01" min="0.01" required placeholder="10"></label>
+          <button type="submit" class="btn-schedina" form="form-schedina">Piazza schedina</button>
+        </div>
+      </aside>
+      {% if calendario_risultati %}
+      <aside class="calendario-panel">
+        <h3>Calendario risultati</h3>
+        <div class="calendario-giornate">
+          {% for g in calendario_risultati[-6:] %}
+          <div class="calendario-giornata">
+            <span class="cal-giornata-label">G. {{ g.giornata }}</span>
+            {% for p in g.partite %}
+            <div class="cal-partita">{% if p.gol_casa is not none and p.gol_trasf is not none %}{{ p.sigla_casa }} {{ p.gol_casa }} - {{ p.gol_trasf }} {{ p.sigla_trasf }}{% else %}{{ p.sigla_casa }} - {{ p.sigla_trasf }}{% endif %}</div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </aside>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  {% if calendario_risultati and not partite_giornata %}
+  <aside class="calendario-panel calendario-standalone">
+    <h3>Calendario risultati</h3>
+    <div class="calendario-giornate">
+      {% for g in calendario_risultati[-8:] %}
+      <div class="calendario-giornata">
+        <span class="cal-giornata-label">G. {{ g.giornata }}</span>
+        {% for p in g.partite %}
+        <div class="cal-partita">{% if p.gol_casa is not none and p.gol_trasf is not none %}{{ p.sigla_casa }} {{ p.gol_casa }} - {{ p.gol_trasf }} {{ p.sigla_trasf }}{% else %}{{ p.sigla_casa }} - {{ p.sigla_trasf }}{% endif %}</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </aside>
+  {% endif %}
+
+  {% if schedine %}
+  <div class="schedine-panel">
+    <h3>Le tue schedine</h3>
+    {% for sch in schedine %}
+    <div class="schedina-card {% if sch.vinto is not none %}{% if sch.vinto %}schedina-vinta{% else %}schedina-persa{% endif %}{% endif %}">
+      <div class="schedina-selezioni">
+        {% for sel in sch.selezioni %}
+        <div class="sel-row {% if sel.corretto is defined and not sel.corretto %}sel-sbagliata{% endif %}">
+          <span class="sel-testo">{{ sel.partita_nome }} → {{ sel.tipo }} @ {{ "%.2f"|format(sel.quota) }}{% if sel.corretto is defined %}{% if sel.corretto %} ✓{% else %} ✗ (esito: {{ sel.esito_reale }}){% endif %}{% endif %}</span>
+          {% if sch.vinto is none %}
+          <form method="post" action="{{ url_for('virtuali_schedina_evento_elimina', schedina_id=sch.id, ic=sel.ic, it=sel.it) }}" class="sel-elimina-form">
+            <button type="submit" class="btn-elimina-evento" title="Elimina evento">×</button>
+          </form>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="schedina-tot">
+        Quota {{ "%.2f"|format(sch.quota_combinata) }} | Puntata €{{ "%.2f"|format(sch.puntata) }}
+        {% if sch.vinto is not none %}
+          {% if sch.vinto %}<span class="esito-vinto">VINTO €{{ "%.2f"|format(sch.vincita) }}</span>
+          {% else %}<span class="esito-perso">Perso ({{ sch.eventi_sbagliati }} sbagliati)</span>{% endif %}
+        {% else %}<span class="in-attesa">In attesa</span>{% endif %}
+        <form method="post" action="{{ url_for('virtuali_schedina_elimina', schedina_id=sch.id) }}" class="schedina-elimina-form">
+          <button type="submit" class="btn-elimina-schedina" title="Elimina schedina">Elimina</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if partite_giornata and countdown_sec > 0 %}
+  <script>
+    (function() {
+      var giornata = {{ giornata_num }};
+      var KEY = 'virtuali_countdown_g' + giornata;
+      var DURAZIONE = {{ countdown_sec }} * 1000;
+      var el = document.getElementById('countdown');
+      var form = document.getElementById('form-gioca');
+      var bar = document.getElementById('countdown-bar');
+      var endTime = parseInt(sessionStorage.getItem(KEY), 10);
+      if (!endTime || endTime <= Date.now()) {
+        endTime = Date.now() + DURAZIONE;
+        sessionStorage.setItem(KEY, String(endTime));
+      }
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      function remainingSec() { return Math.max(0, Math.floor((endTime - Date.now()) / 1000)); }
+      function update() {
+        var r = remainingSec();
+        if (r <= 0) {
+          el.textContent = '00:00';
+          if (bar) bar.classList.add('countdown-expired');
+          sessionStorage.removeItem(KEY);
+          if (form) form.submit();
+          return;
+        }
+        el.textContent = pad(Math.floor(r/60)) + ':' + pad(r%60);
+        if (r <= 30 && bar) bar.classList.add('countdown-urgent');
+        setTimeout(update, 1000);
+      }
+      document.addEventListener('visibilitychange', function() { if (!document.hidden) update(); });
+      update();
+    })();
+  </script>
+  {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Login - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+  <h1>Accedi</h1>
+  <form method="post" class="form-auth">
+    <label>Username</label>
+    <input type="text" name="username" required autofocus placeholder="admin">
+    <label>Password</label>
+    <input type="password" name="password" required placeholder="••••••••">
+    <button type="submit">Accedi</button>
+  </form>
+  <p class="auth-link"><a href="{{ url_for('registrati') }}">Non hai un account? Registrati</a></p>
+</div>
+{% endblock %}

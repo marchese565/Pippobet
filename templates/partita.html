@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block title %}{{ partita.nome }} - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="partita-header">
+  <a href="{{ url_for('index') }}" class="partita-back">&larr;</a>
+  <div class="partita-titolo">
+    <h1>{{ partita.nome }}</h1>
+    <span class="partita-badge {% if esito_label %}partita-chiusa{% else %}partita-aperta{% endif %}">
+      {% if esito_label %}Esito: {{ esito_label }}{% else %}Aperta{% endif %}
+    </span>
+  </div>
+</div>
+
+{% if not esito_label %}
+<form method="post" action="{{ url_for('scommetti', partita_id=partita.id) }}" class="form-scommessa-partita" id="form-bet">
+{% endif %}
+
+<div class="partita-griglia">
+  <div class="partita-categoria">
+    <h3>1 · X · 2</h3>
+    <table class="tab-categoria">
+      <tr><th>1</th><td>{{ "%.2f"|format(quote['1']) if quote['1'] else "–" }}</td></tr>
+      <tr><th>X</th><td>{{ "%.2f"|format(quote['X']) if quote['X'] else "–" }}</td></tr>
+      <tr><th>2</th><td>{{ "%.2f"|format(quote['2']) if quote['2'] else "–" }}</td></tr>
+    </table>
+    {% if not esito_label %}
+    <div class="cat-bet">
+      <label class="bet-riga"><input type="radio" name="tipo" value="1" required data-quota="{{ quote['1'] or 0 }}"> 1</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="X" data-quota="{{ quote['X'] or 0 }}"> X</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="2" data-quota="{{ quote['2'] or 0 }}"> 2</label>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="partita-categoria">
+    <h3>Doppie</h3>
+    <table class="tab-categoria">
+      <tr><th>1X</th><td>{{ "%.2f"|format(quote['1X']) if quote['1X'] else "–" }}</td></tr>
+      <tr><th>X2</th><td>{{ "%.2f"|format(quote['X2']) if quote['X2'] else "–" }}</td></tr>
+      <tr><th>12</th><td>{{ "%.2f"|format(quote['12']) if quote['12'] else "–" }}</td></tr>
+    </table>
+    {% if not esito_label %}
+    <div class="cat-bet">
+      <label class="bet-riga"><input type="radio" name="tipo" value="1X" data-quota="{{ quote['1X'] or 0 }}"> 1X</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="X2" data-quota="{{ quote['X2'] or 0 }}"> X2</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="12" data-quota="{{ quote['12'] or 0 }}"> 12</label>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="partita-categoria">
+    <h3>Over</h3>
+    <table class="tab-categoria">
+      <tr><th>1.5</th><td>{{ "%.2f"|format(quote['Over1.5']) if quote.get('Over1.5') else "–" }}</td></tr>
+      <tr><th>2.5</th><td>{{ "%.2f"|format(quote['Over2.5']) if quote.get('Over2.5') else "–" }}</td></tr>
+      <tr><th>3.5</th><td>{{ "%.2f"|format(quote['Over3.5']) if quote.get('Over3.5') else "–" }}</td></tr>
+    </table>
+    {% if not esito_label %}
+    <div class="cat-bet">
+      <label class="bet-riga"><input type="radio" name="tipo" value="Over1.5" data-quota="{{ quote.get('Over1.5') or 0 }}"> 1.5</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="Over2.5" data-quota="{{ quote.get('Over2.5') or 0 }}"> 2.5</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="Over3.5" data-quota="{{ quote.get('Over3.5') or 0 }}"> 3.5</label>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="partita-categoria">
+    <h3>Under</h3>
+    <table class="tab-categoria">
+      <tr><th>1.5</th><td>{{ "%.2f"|format(quote['Under1.5']) if quote.get('Under1.5') else "–" }}</td></tr>
+      <tr><th>2.5</th><td>{{ "%.2f"|format(quote['Under2.5']) if quote.get('Under2.5') else "–" }}</td></tr>
+      <tr><th>3.5</th><td>{{ "%.2f"|format(quote['Under3.5']) if quote.get('Under3.5') else "–" }}</td></tr>
+    </table>
+    {% if not esito_label %}
+    <div class="cat-bet">
+      <label class="bet-riga"><input type="radio" name="tipo" value="Under1.5" data-quota="{{ quote.get('Under1.5') or 0 }}"> 1.5</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="Under2.5" data-quota="{{ quote.get('Under2.5') or 0 }}"> 2.5</label>
+      <label class="bet-riga"><input type="radio" name="tipo" value="Under3.5" data-quota="{{ quote.get('Under3.5') or 0 }}"> 3.5</label>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="partita-categoria partita-scommesse">
+    <h3>Le tue scommesse</h3>
+    {% if scommesse %}
+    <table class="tab-categoria tab-scommesse">
+      {% for s in scommesse %}
+      <tr class="{% if s.vinto is none %}in-attesa{% elif s.vinto %}vinta{% else %}persa{% endif %}">
+        <td>{{ s.tipo }} @ {{ "%.2f"|format(s.quota) }} — €{{ "%.2f"|format(s.puntata) }}</td>
+        <td class="sc-esito">
+          {% if s.vinto is not none %}
+            {% if s.vinto %}<span class="vinto">+€{{ "%.2f"|format(s.vincita) }}</span>{% else %}<span class="perso">✗</span>{% endif %}
+          {% else %}<span class="in-attesa">…</span>{% endif %}
+        </td>
+        <td class="sc-del"><form method="post" action="{{ url_for('scommessa_elimina', scommessa_id=s.id) }}"><button type="submit">×</button></form></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p class="tab-vuota">Nessuna scommessa</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if not esito_label %}
+<div class="bet-bar">
+  <div class="bet-input-group">
+    <label>Importo €</label>
+    <input type="number" name="puntata" id="puntata" step="0.01" min="0.01" required value="10.00">
+  </div>
+  <div class="vincita-mostra">
+    <span class="vincita-label">Vincita</span>
+    <span class="vincita-val" id="vincita-display">—</span>
+  </div>
+  <button type="submit" form="form-bet">Scommetti</button>
+</div>
+</form>
+{% endif %}
+
+{% if not esito_label %}
+<div class="partita-azioni">
+  <form method="post" action="{{ url_for('simula', partita_id=partita.id) }}">
+    <button type="submit" class="btn-simula">Simula esito</button>
+  </form>
+  <a href="{{ url_for('nuova_partita') }}" class="btn-nuova">+ Nuova partita</a>
+</div>
+{% endif %}
+
+<p class="link-back"><a href="{{ url_for('index') }}">&larr; Torna alle partite</a></p>
+
+{% if not esito_label %}
+<script>
+(function() {
+  var puntata = document.getElementById('puntata');
+  var vincitaDisplay = document.getElementById('vincita-display');
+  var radios = document.querySelectorAll('#form-bet input[name="tipo"]');
+
+  function aggiornaVincita() {
+    var sel = document.querySelector('#form-bet input[name="tipo"]:checked');
+    var q = sel ? parseFloat(sel.getAttribute('data-quota')) : 0;
+    var p = parseFloat(puntata.value) || 0;
+    if (q > 0 && p > 0) {
+      vincitaDisplay.textContent = '€' + (p * q).toFixed(2);
+    } else {
+      vincitaDisplay.textContent = '—';
+    }
+  }
+
+  if (puntata && vincitaDisplay) {
+    puntata.addEventListener('input', aggiornaVincita);
+    puntata.addEventListener('change', aggiornaVincita);
+    radios.forEach(function(r) { r.addEventListener('change', aggiornaVincita); });
+    aggiornaVincita();
+  }
+})();
+</script>
+{% endif %}
+{% endblock %}

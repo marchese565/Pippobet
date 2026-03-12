@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Ricarica bankroll - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="ricarica-wrapper">
+  <div class="ricarica-box">
+    <h2>Ricarica bankroll</h2>
+    <p class="bankroll-attuale">Saldo attuale: <strong>€{{ "%.2f"|format(bankroll) }}</strong></p>
+    <form method="post" class="form-ricarica">
+      <label>Importo (€)</label>
+      <input type="number" name="importo" step="0.01" min="0.01" required placeholder="100" autofocus>
+      <div class="form-actions">
+        <button type="submit">Ricarica</button>
+        <a href="{{ url_for('virtuali') }}" class="btn-link">Annulla</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

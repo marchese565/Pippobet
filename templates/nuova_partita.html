@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Nuova partita - PIPPObet{% endblock %}
+
+{% block content %}
+<div class="page-header page-header-sm">
+  <h1>Nuova partita</h1>
+</div>
+
+<form method="post" class="form-nuova-partita">
+  <div class="menus-row">
+    <div class="menu-dati-partita">
+      <h3 class="menu-titolo">Partita</h3>
+      <input type="text" name="nome" required placeholder="Casa - Trasferta" class="input-nome">
+      <div class="dati-riga">
+        <div class="dati-cell"><span>1</span><input type="number" name="prob1" step="0.01" min="0" max="1" value="0.45" required></div>
+        <div class="dati-cell"><span>X</span><input type="number" name="probX" step="0.01" min="0" max="1" value="0.30" required></div>
+        <div class="dati-cell"><span>2</span><input type="number" name="prob2" step="0.01" min="0" max="1" value="0.25" required></div>
+        <div class="dati-cell"><span>%</span><input type="number" name="margine" min="1" max="20" value="5" step="0.5"></div>
+      </div>
+    </div>
+
+    <div class="menu-quote-partita">
+      <h3 class="menu-titolo">Quote <em>opzionali</em></h3>
+      <div class="quote-griglia">
+        <div class="quote-col">
+          <span class="quote-gruppo">1X · X2 · 12</span>
+          <input type="number" name="q_1X" step="0.01" min="1" placeholder="1X">
+          <input type="number" name="q_X2" step="0.01" min="1" placeholder="X2">
+          <input type="number" name="q_12" step="0.01" min="1" placeholder="12">
+        </div>
+        <div class="quote-col">
+          <span class="quote-gruppo">Over</span>
+          <input type="number" name="q_Over15" step="0.01" min="1" placeholder="1.5">
+          <input type="number" name="q_Over25" step="0.01" min="1" placeholder="2.5">
+          <input type="number" name="q_Over35" step="0.01" min="1" placeholder="3.5">
+        </div>
+        <div class="quote-col">
+          <span class="quote-gruppo">Under</span>
+          <input type="number" name="q_Under15" step="0.01" min="1" placeholder="1.5">
+          <input type="number" name="q_Under25" step="0.01" min="1" placeholder="2.5">
+          <input type="number" name="q_Under35" step="0.01" min="1" placeholder="3.5">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions form-actions-full">
+    <button type="submit">Crea partita</button>
+    <a href="{{ url_for('index') }}" class="btn-link">Annulla</a>
+  </div>
+</form>
+
+{% endblock %}

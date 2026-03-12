@@ -1,0 +1,82 @@
+[
+  {
+    "nome": "Inter",
+    "forza": 85.0
+  },
+  {
+    "nome": "Juventus",
+    "forza": 80.0
+  },
+  {
+    "nome": "Milan",
+    "forza": 75.0
+  },
+  {
+    "nome": "Roma",
+    "forza": 70.0
+  },
+  {
+    "nome": "Atalanta",
+    "forza": 65.0
+  },
+  {
+    "nome": "Bologna",
+    "forza": 50.0
+  },
+  {
+    "nome": "Cagliari",
+    "forza": 35.0
+  },
+  {
+    "nome": "Como",
+    "forza": 79.0
+  },
+  {
+    "nome": "cremonese",
+    "forza": 20.0
+  },
+  {
+    "nome": "Fiorentina",
+    "forza": 35.0
+  },
+  {
+    "nome": "Genoa",
+    "forza": 39.0
+  },
+  {
+    "nome": "Hellas Verona",
+    "forza": 19.0
+  },
+  {
+    "nome": "Lazio",
+    "forza": 40.0
+  },
+  {
+    "nome": "Lecce",
+    "forza": 20.0
+  },
+  {
+    "nome": "Parma",
+    "forza": 33.0
+  },
+  {
+    "nome": "Pisa",
+    "forza": 18.0
+  },
+  {
+    "nome": "Sassuolo",
+    "forza": 46.0
+  },
+  {
+    "nome": "Torino",
+    "forza": 39.0
+  },
+  {
+    "nome": "Udinese",
+    "forza": 30.0
+  },
+  {
+    "nome": "Napoli",
+    "forza": 78.0
+  }
+]

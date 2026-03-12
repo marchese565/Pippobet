@@ -1,0 +1,103 @@
+[
+  {
+    "partita_id": 4,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 10.0,
+    "esito_partita": "X",
+    "vinto": false,
+    "vincita": 0,
+    "id": 1
+  },
+  {
+    "partita_id": 3,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1X",
+    "quota": 1.2,
+    "puntata": 10.0,
+    "esito_partita": "2",
+    "vinto": false,
+    "vincita": 0,
+    "id": 2
+  },
+  {
+    "partita_id": 5,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 100.0,
+    "esito_partita": "1",
+    "vinto": true,
+    "vincita": 211.0,
+    "id": 3
+  },
+  {
+    "partita_id": 6,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "2",
+    "quota": 3.2,
+    "puntata": 1110.0,
+    "esito_partita": "1",
+    "vinto": false,
+    "vincita": 0,
+    "id": 4
+  },
+  {
+    "partita_id": 7,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 100.0,
+    "esito_partita": "X",
+    "vinto": false,
+    "vincita": 0,
+    "id": 5
+  },
+  {
+    "partita_id": 8,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 100.0,
+    "esito_partita": "X",
+    "vinto": false,
+    "vincita": 0,
+    "id": 6
+  },
+  {
+    "partita_id": 9,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 100.0,
+    "esito_partita": "X",
+    "vinto": false,
+    "vincita": 0,
+    "id": 7
+  },
+  {
+    "partita_id": 14,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "1",
+    "quota": 2.11,
+    "puntata": 1000.0,
+    "esito_partita": "1",
+    "vinto": true,
+    "vincita": 2110.0,
+    "id": 8,
+    "user_id": 2
+  },
+  {
+    "partita_id": 10,
+    "partita_nome": "Juventus - Torino",
+    "tipo": "Under2.5",
+    "quota": 2.24,
+    "puntata": 2110.0,
+    "esito_partita": "4 gol",
+    "vinto": false,
+    "vincita": 0,
+    "id": 9,
+    "user_id": 2
+  }
+]
